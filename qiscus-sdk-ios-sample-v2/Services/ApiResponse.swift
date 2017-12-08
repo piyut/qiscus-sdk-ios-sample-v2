@@ -58,4 +58,22 @@ class Response {
         
         return usersData
     }
+    
+    class func getContactsGroup(data: Any) -> [ContactGroup] {
+        let dataJSON = JSON(data)
+        let dataUsers = dataJSON["results"].dictionaryObject
+        var contacts = [ContactGroup]()
+        
+        if let users = dataUsers {
+            let result = users.map{ ContactGroup($0.key, data: $0.value as! [[String : Any]])! }
+            let resultSorted = result.sorted(by: { (c1, c2) -> Bool in
+                return c1.title! < c2.title!
+            })
+            contacts.append(contentsOf: resultSorted)
+        }
+        
+        ContactGroupLocal.instance.setData(contacts)
+        
+        return contacts
+    }
 }

@@ -11,7 +11,7 @@ import Alamofire
 import AlamofireImage
 
 class Api {
-    // MARK: - load data api using GET method
+    // MARK: - load data contacts
     static func loadContacts(_ url: String, headers: [String:String], completion: @escaping (ApiResponse)->()){
         Alamofire.request(url, method: .get, headers: headers).responseJSON { (response) in
             if let value = response.result.value {
@@ -19,6 +19,22 @@ class Api {
                     completion(ApiResponse.failed(value: "Failed load contacts."))
                 } else {
                     completion(ApiResponse.succeed(value: Response.getContacts(data: value)))
+                }
+                
+            } else {
+                completion(ApiResponse.failed(value: response.result.error!.localizedDescription))
+            }
+        }
+    }
+    
+    // MARK: - load data contacts grouping
+    static func loadContactsGroup(_ url: String, headers: [String:String], completion: @escaping (ApiResponse)->()){
+        Alamofire.request(url, method: .get, headers: headers).responseJSON { (response) in
+            if let value = response.result.value {
+                if (response.response?.statusCode)! >= 300 {
+                    completion(ApiResponse.failed(value: "Failed load contacts."))
+                } else {
+                    completion(ApiResponse.succeed(value: Response.getContactsGroup(data: value)))
                 }
                 
             } else {

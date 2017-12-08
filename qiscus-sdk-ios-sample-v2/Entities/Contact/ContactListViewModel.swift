@@ -18,22 +18,23 @@ protocol ContactListViewDelegate {
 
 class ContactListViewModel: NSObject {
     var delegate: ContactListViewDelegate?
-    var items = [Contact]()
+    var items = [ContactGroup]()
     
     func loadData() {
         self.delegate?.showLoading("Please wait...")
         self.items.removeAll()
         
-        let contacts = ContactLocal.instance.contacts
+        // let contacts = ContactLocal.instance.contacts
+        let contacts = ContactGroupLocal.instance.contacts
         if contacts.isEmpty {
-            Api.loadContacts(Helper.URL_CONTACTS, headers: Helper.headers, completion: { response in
+            Api.loadContactsGroup(Helper.URL_CONTACTS_GROUP, headers: Helper.headers, completion: { response in
                 switch(response){
                 case .failed(value: let message):
                     self.delegate?.didFailedUpdated(message)
                     break
                     
                 case .succeed(value: let data):
-                    if let data = data as? [Contact] {
+                    if let data = data as? [ContactGroup] {
                         self.items.append(contentsOf: data)
                         self.delegate?.didFinishUpdated()
                     }
@@ -43,10 +44,11 @@ class ContactListViewModel: NSObject {
                     break
                 }
             })
+            
+        } else {
+            self.items.append(contentsOf: contacts)
+            self.delegate?.didFinishUpdated()
         }
-        
-        self.items.append(contentsOf: contacts)
-        self.delegate?.didFinishUpdated()
     }
     
     func showDialog(_ contact: Contact) -> Void {
@@ -116,8 +118,21 @@ class ContactListViewModel: NSObject {
 
 extension ContactListViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.showDialog(self.items[indexPath.row])
+        self.showDialog(self.items[indexPath.section].contacts[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let title = items[section].title {
+            let view = UIView.headerInTableView(title.capitalized)
+            return view
+        }
+        
+        return UIView()
     }
 }
 
@@ -127,7 +142,7 @@ extension ContactListViewModel: UITableViewDataSource {
             tableView.backgroundView?.isHidden  = true
             tableView.separatorStyle            = .singleLine
             
-            return 1
+            return self.items.count
             
         } else {
             let bgView = UIView.backgroundView(UIImage(named: "ic_empty_contact")!,
@@ -147,12 +162,12 @@ extension ContactListViewModel: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return items[section].contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ContactCell.identifier, for: indexPath) as? ContactCell {
-            cell.item = self.items[indexPath.row]
+            cell.item = self.items[indexPath.section].contacts[indexPath.row]
             
             tableView.tableFooterView = UIView()
             

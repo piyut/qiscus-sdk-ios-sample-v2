@@ -34,6 +34,7 @@
 		CC23562D1FB863EE0007EA37 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23562C1FB863EE0007EA37 /* CGFloat.swift */; };
 		CC31F6681FBFE440004875F8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC31F6671FBFE440004875F8 /* SettingViewModel.swift */; };
 		CC31F66A1FBFF6E5004875F8 /* ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC31F6691FBFF6E5004875F8 /* ActionModel.swift */; };
+		CC788CF61FCD5182008C7DF7 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC788CF51FCD5182008C7DF7 /* Dictionary.swift */; };
 		CC7FDD541FBC1F7B00901594 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7FDD531FBC1F7B00901594 /* String.swift */; };
 		CC7FDD561FBC1F9200901594 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7FDD551FBC1F9200901594 /* Date.swift */; };
 		CC7FDD591FBC334A00901594 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7FDD571FBC334A00901594 /* ActionCell.swift */; };
@@ -60,7 +61,7 @@
 		CCABBC7C1FB187D90039B34E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCABBC7A1FB187D90039B34E /* LaunchScreen.storyboard */; };
 		CCABBC871FB187D90039B34E /* qiscus_sdk_ios_sample_v2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCABBC861FB187D90039B34E /* qiscus_sdk_ios_sample_v2Tests.swift */; };
 		CCABBC921FB187D90039B34E /* qiscus_sdk_ios_sample_v2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCABBC911FB187D90039B34E /* qiscus_sdk_ios_sample_v2UITests.swift */; };
-		CCABBCA91FB188BE0039B34E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCABBCA81FB188BE0039B34E /* Helpers.swift */; };
+		CCABBCA91FB188BE0039B34E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCABBCA81FB188BE0039B34E /* Helper.swift */; };
 		CCABBCAE1FB19FC70039B34E /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCABBCAD1FB19FC70039B34E /* UIViewController.swift */; };
 		CCB2B22D1FBBF561002FBB2D /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2B22C1FBBF561002FBB2D /* UITextField.swift */; };
 		CCB2B2311FBBFEF7002FBB2D /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB2B22F1FBBFEF7002FBB2D /* LoginVC.swift */; };
@@ -137,6 +138,7 @@
 		CC23562C1FB863EE0007EA37 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		CC31F6671FBFE440004875F8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		CC31F6691FBFF6E5004875F8 /* ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModel.swift; sourceTree = "<group>"; };
+		CC788CF51FCD5182008C7DF7 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		CC7FDD531FBC1F7B00901594 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		CC7FDD551FBC1F9200901594 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		CC7FDD571FBC334A00901594 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActionCell.swift; path = ../Views/ActionCell.swift; sourceTree = "<group>"; };
@@ -169,7 +171,7 @@
 		CCABBC8D1FB187D90039B34E /* qiscus-sdk-ios-sample-v2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "qiscus-sdk-ios-sample-v2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCABBC911FB187D90039B34E /* qiscus_sdk_ios_sample_v2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = qiscus_sdk_ios_sample_v2UITests.swift; sourceTree = "<group>"; };
 		CCABBC931FB187D90039B34E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CCABBCA81FB188BE0039B34E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		CCABBCA81FB188BE0039B34E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		CCABBCAD1FB19FC70039B34E /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		CCB2B22C1FBBF561002FBB2D /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		CCB2B22F1FBBFEF7002FBB2D /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -400,7 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				CC2356191FB8147F0007EA37 /* ChatManager.swift */,
-				CCABBCA81FB188BE0039B34E /* Helpers.swift */,
+				CCABBCA81FB188BE0039B34E /* Helper.swift */,
 				CCDD6F621FB2DA9700D24921 /* UILoadingView.swift */,
 				CCD689E41FB764EC00235674 /* Utilities.swift */,
 				CC1CD2C61FC802590029522D /* UIImagePickerView.swift */,
@@ -420,6 +422,7 @@
 				CCB2B22C1FBBF561002FBB2D /* UITextField.swift */,
 				CC7FDD5B1FBC3FE600901594 /* UIView.swift */,
 				CCABBCAD1FB19FC70039B34E /* UIViewController.swift */,
+				CC788CF51FCD5182008C7DF7 /* Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 				CC80056F1FBF18570009AE35 /* UIImage.swift in Sources */,
 				CC23561A1FB8147F0007EA37 /* ChatManager.swift in Sources */,
 				CC8005751FBF2D230009AE35 /* GroupInfoViewModel.swift in Sources */,
+				CC788CF61FCD5182008C7DF7 /* Dictionary.swift in Sources */,
 				CC7FDD591FBC334A00901594 /* ActionCell.swift in Sources */,
 				CCB2B22D1FBBF561002FBB2D /* UITextField.swift in Sources */,
 				CC8786F11FC036B400443E57 /* GroupPictureCell.swift in Sources */,
@@ -854,7 +858,7 @@
 				CCDD6F521FB2B67500D24921 /* ContactVC.swift in Sources */,
 				CC23562D1FB863EE0007EA37 /* CGFloat.swift in Sources */,
 				CC018FE71FB42FEF00396446 /* DetailContactVC.swift in Sources */,
-				CCABBCA91FB188BE0039B34E /* Helpers.swift in Sources */,
+				CCABBCA91FB188BE0039B34E /* Helper.swift in Sources */,
 				CC018FF71FB4481600396446 /* ContactCell.swift in Sources */,
 				CCD689E31FB763BB00235674 /* Preference.swift in Sources */,
 				CC0973D01FB57AC2007F31C1 /* CreateStrangerCell.swift in Sources */,

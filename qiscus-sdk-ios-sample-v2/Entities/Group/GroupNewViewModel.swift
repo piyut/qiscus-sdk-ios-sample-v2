@@ -17,13 +17,13 @@ protocol GroupNewViewDelegate {
 
 class GroupNewViewModel: NSObject {
     fileprivate var delegate: GroupNewViewDelegate?
-    var items = [Contact]()
+    var items = [ContactGroup]()
     var itemSelecteds = [Contact]() {
         didSet {
             delegate?.itemsDidChanged(contacts: itemSelecteds)
         }
     }
-    var filteredData = [Contact]()
+    var filteredData = [ContactGroup]()
     
     init(delegate: GroupNewViewDelegate) {
         super.init()
@@ -33,14 +33,14 @@ class GroupNewViewModel: NSObject {
     }
 
     func setup() {
-        let contacts = ContactLocal.instance.contacts
+        let contacts = ContactGroupLocal.instance.contacts
         if contacts.isEmpty {
-            Api.loadContacts(Helper.URL_CONTACTS, headers: Helper.headers, completion: { response in
+            Api.loadContactsGroup(Helper.URL_CONTACTS_GROUP, headers: Helper.headers, completion: { response in
                 switch(response){
                 case .failed(_):
                     break
                 case .succeed(value: let data):
-                    if let data = data as? [Contact] {
+                    if let data = data as? [ContactGroup] {
                         self.items.append(contentsOf: data)
                         self.filteredData.append(contentsOf: data)
                     }
@@ -59,7 +59,7 @@ class GroupNewViewModel: NSObject {
 
 extension GroupNewViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contact = self.filteredData[indexPath.row]
+        let contact = self.filteredData[indexPath.section].contacts[indexPath.row]
         if !(self.itemSelecteds.contains(where: { $0.email == contact.email })) {
             self.itemSelecteds.append(contact)
             tableView.cellForRow(at: indexPath)?.accessoryView = UIImageView.checkImage(true)
@@ -130,7 +130,7 @@ extension GroupNewViewModel: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ContactCell.identifier, for: indexPath) as? ContactCell {
-            let contact     = self.filteredData[indexPath.row]
+            let contact     = self.filteredData[indexPath.section].contacts[indexPath.row]
             let selected    = self.itemSelecteds.contains(where: { $0.email == contact.email})
             
             cell.item           = contact
@@ -173,9 +173,13 @@ extension GroupNewViewModel: UICollectionViewDataSource {
 extension GroupNewViewModel: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            filteredData = searchText.isEmpty ? items : items.filter({ (contact: Contact) -> Bool in
-                return contact.name!.lowercased().contains(searchText.lowercased())
-            })
+            filteredData = items
+//            filteredData = searchText.isEmpty ? items : items.filter({ (group: ContactGroup) -> [ContactGroup] in
+//                return group.contacts.filter({ (contact) -> Bool in
+//                    contact.name!.lowercased().contains(searchText.lowercased())
+//                })
+//
+//            })
             
             delegate?.filterSearchDidChanged()
         }

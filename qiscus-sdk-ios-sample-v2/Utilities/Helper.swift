@@ -1,5 +1,5 @@
 //
-//  Helpers.swift
+//  Helper.swift
 //  qiscus-sdk-ios-sample-v2
 //
 //  Created by Rohmad Sasmito on 11/7/17.
@@ -32,6 +32,12 @@ class Helper: NSObject {
     
     static func urlContacts(of page: Int, limit: Int = 10) -> String {
         return "https://dashboard-sample.herokuapp.com/api/contacts?page=\(page)&limit=\(limit)"
+    }
+    
+    static var URL_CONTACTS_GROUP: String {
+        get {
+            return "https://dashboard-sample.herokuapp.com/api/mobile/contacts"
+        }
     }
     
     static var URL_UPLOAD: String {

@@ -19,6 +19,15 @@ class ContactLocal {
     }
 }
 
+class ContactGroupLocal {
+    var contacts = [ContactGroup]()
+    static let instance = ContactGroupLocal()
+    
+    func setData(_ contacts: [ContactGroup]) {
+        self.contacts = contacts
+    }
+}
+
 public class Contact {
     var id: Int?
     var name: String?
@@ -30,6 +39,13 @@ public class Contact {
         self.name = data["name"].stringValue
         self.avatarURL = data["avatar_url"].stringValue
         self.email = data["email"].stringValue
+    }
+    
+    init?(json: [String:Any]) {
+        self.id = json["id"] as? Int
+        self.name = json["name"] as? String
+        self.avatarURL = json["avatar_url"] as? String
+        self.email = json["email"] as? String
     }
     
     init?(user: QUser) {
@@ -44,5 +60,16 @@ public class Contact {
         self.name = name
         self.avatarURL = avatarURL
         self.email = email
+    }
+}
+
+public class ContactGroup {
+    var title: String?
+    var contacts = [Contact]()
+    
+    init?(_ title: String, data: [[String: Any]]) {
+        self.title = title
+        self.contacts = data.map{ Contact(json: $0)!}
+        //self.contacts = data.arrayValue.map { Contact(withJSON: $0) }
     }
 }
